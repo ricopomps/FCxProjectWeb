@@ -1,6 +1,6 @@
 
-export function Home() {
-    return (
+export function Home () {
+  return (
     <p>Home</p>
-    );
+  );
 }

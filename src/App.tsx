@@ -1,11 +1,9 @@
-import {useState} from 'react';
-import {ListItem} from './components/ListItem'
-import './App.css'
-import { AppRoutes} from './Routes';
-function App() {
+import { AppRoutes } from './Routes';
+import './App.css';
+function App () {
   return (
     <AppRoutes/>
   );
 }
 
-export default App
+export default App;

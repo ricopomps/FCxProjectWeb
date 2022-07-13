@@ -1,6 +1,6 @@
 
-export function UserList() {
-    return (
+export function UserList () {
+  return (
     <p>UserList</p>
-    );
+  );
 }
