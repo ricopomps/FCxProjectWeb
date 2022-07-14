@@ -1,8 +1,13 @@
+import { AppBar } from './components/AppBar';
 import { AppRoutes } from './Routes';
 import './App.css';
+
 function App () {
   return (
-    <AppRoutes/>
+    <>
+      <AppBar/>
+      <AppRoutes/>
+    </>
   );
 }
 

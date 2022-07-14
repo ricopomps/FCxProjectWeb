@@ -1,6 +1,8 @@
-
+import { ListItem } from '../components/ListItem';
 export function Home () {
   return (
-    <p>Home</p>
+    <>
+    <ListItem text="hello"/>
+    </>
   );
 }
