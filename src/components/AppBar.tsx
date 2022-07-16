@@ -15,7 +15,7 @@ export function AppBar (props:AppBarProps) {
             <Link style={{ color: '#fafafa' }} href="/list">
                 <Button color='inherit'>Listagem</Button>
             </Link>
-            <Link style={{ color: '#fafafa' }} href="/list">
+            <Link style={{ color: '#fafafa' }} href="/form">
                 <Button color='inherit'>Criação</Button>
             </Link>
         </Stack>
