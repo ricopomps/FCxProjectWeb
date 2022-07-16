@@ -1,52 +1,51 @@
-import { Paper, TextField } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import { useState } from 'react';
+import axios from 'axios';
+import {
+  Paper,
+  Button
+} from '@mui/material';
+import { FormLine } from '../components/FormLine';
+
 type UserFormProps = {
   user:any
 };
 export function UserForm (props:UserFormProps) {
-  const getColor = (status) => {
-    const color = status === 1 ? 'green' : status === 2 ? 'yellow' : 'red';
-    return color;
+  const [user, setUser] = useState({ });
+
+  const handleStateChange = (key, value) => {
+    setUser({ ...user, [key]: value });
   };
-  const FormHeader = () => {
-    return (
-    <div style={{ display: 'flex', padding: '1rem' }}>
-        <TextField
-        id="standard-basic"
-        value={props?.user?.name}
-        label="Nome"
-        variant="standard" />
-        <div style={{ flexGrow: 1 }}/>
-        <PersonIcon style={{ color: getColor(props?.user?.status), padding: '1rem' }}/>
-        </div>
-    );
+
+  const handleSubmit = async () => {
+    await axios.post('http://localhost:5000/', user).then((resp) => { console.log(resp); });
   };
-  const FormLine = () => {
-    return (
-    <div style={{ display: 'flex', padding: '1rem', gap: '1rem' }}>
-      <TextField
-        id="standard-basic"
-        value={props?.user?.login}
-        label="Login"
-        variant="standard" />
-      <TextField
-        id="standard-basic"
-        value={props?.user?.email}
-        label="E-Mail"
-        variant="standard" />
-    </div>
-    );
-  };
+
   return (
   <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-  <Paper style={{ width: '80%', padding: '1rem' }}>
-      <FormHeader/>
-      <FormLine/>
-      <FormLine/>
-      <FormLine/>
-      <FormLine/>
-      <FormLine/>
-  </Paper>
+    <Paper style={{ width: '80%', padding: '1rem' }}>
+        <FormLine onChange={handleStateChange} data={[{ value: user?.name, key: 'name', label: 'Nome' }]}/>
+        <FormLine onChange={handleStateChange} data={[
+          { value: user?.email, key: 'email', label: 'E-Mail' },
+          { value: user?.login, key: 'login', label: 'Login' }
+        ]}/>
+        <FormLine onChange={handleStateChange} data={[
+          { value: user?.cpf, key: 'cpf', label: 'Cpf' },
+          { value: user?.phone, key: 'phone', label: 'Telefone' }
+        ]}/>
+        <FormLine onChange={handleStateChange} data={[
+          { value: user?.birhdate, key: 'birthdate', label: 'Data de nascimento' },
+          { value: user?.motherName, key: 'motherName', label: 'Nome da mãe' }
+        ]}/>
+        <FormLine onChange={handleStateChange} data={[
+          { value: user?.password, key: 'password', label: 'Password' },
+          { value: user?.status, key: 'status', label: 'Status' }
+        ]}/>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
+          <Button onClick={() => handleSubmit()}variant="contained" >
+            Cadastrar
+          </Button>
+        </div>
+    </Paper>
   </div>
 
   );
