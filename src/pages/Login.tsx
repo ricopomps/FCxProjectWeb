@@ -14,9 +14,19 @@ export function Login (props:LoginProps) {
     setUser({ ...user, [key]: value });
   };
 
+  const handleLoginSucess = () => {
+    console.log('Login realizado com sucesso');
+  };
+
+  const handleLoginFailure = (message) => {
+    console.log(message);
+  };
+
   const handleLogin = async () => {
-    return await axios.get('http://localhost:5000/login').then((resp) => {
-      console.log(resp);
+    return await axios.post('http://localhost:5000/login', user).then((resp) => {
+      handleLoginSucess();
+    }).catch((error) => {
+      handleLoginFailure(error.response.data);
     });
   };
   return (
