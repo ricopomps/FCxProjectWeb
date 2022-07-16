@@ -4,6 +4,8 @@ import {
   Paper,
   Button
 } from '@mui/material';
+import { toast } from 'react-toastify';
+
 import { FormLine } from '../components/FormLine';
 
 type UserFormProps = {
@@ -15,9 +17,20 @@ export function UserForm (props:UserFormProps) {
   const handleStateChange = (key, value) => {
     setUser({ ...user, [key]: value });
   };
+  const handleSucess = () => {
+    toast.success('Login realizado com sucesso');
+  };
+
+  const handleFailure = (message) => {
+    toast.error(message);
+  };
 
   const handleSubmit = async () => {
-    await axios.post('http://localhost:5000/', user).then((resp) => { console.log(resp); });
+    return await axios.post('http://localhost:5000/', user).then((resp) => {
+      handleSucess();
+    }).catch((error) => {
+      handleFailure(error.response.data);
+    });
   };
 
   return (

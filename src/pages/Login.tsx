@@ -2,6 +2,8 @@ import { Paper, TextField, Button, Link } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
+import { toast } from 'react-toastify';
+
 type LoginProps = {
   user:any
 };
@@ -15,11 +17,11 @@ export function Login (props:LoginProps) {
   };
 
   const handleLoginSucess = () => {
-    console.log('Login realizado com sucesso');
+    toast.success('Login realizado com sucesso');
   };
 
   const handleLoginFailure = (message) => {
-    console.log(message);
+    toast.error(message);
   };
 
   const handleLogin = async () => {
