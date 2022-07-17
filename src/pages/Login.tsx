@@ -1,6 +1,7 @@
 import { Paper, TextField, Button, Link } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import { toast } from 'react-toastify';
 
@@ -8,6 +9,10 @@ type LoginProps = {
   user:any
 };
 export function Login (props:LoginProps) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.removeItem('token');
+  }, []);
   const [user, setUser] = useState({
     login: '',
     password: ''
@@ -16,8 +21,10 @@ export function Login (props:LoginProps) {
     setUser({ ...user, [key]: value });
   };
 
-  const handleLoginSucess = () => {
+  const handleLoginSucess = (response) => {
     toast.success('Login realizado com sucesso');
+    localStorage.setItem('token', response.data.accessToken);
+    navigate('/list');
   };
 
   const handleLoginFailure = (message) => {
@@ -26,7 +33,7 @@ export function Login (props:LoginProps) {
 
   const handleLogin = async () => {
     return await axios.post('http://localhost:5000/login', user).then((resp) => {
-      handleLoginSucess();
+      handleLoginSucess(resp);
     }).catch((error) => {
       handleLoginFailure(error.response.data);
     });
