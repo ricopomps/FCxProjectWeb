@@ -50,20 +50,20 @@ export function Login (props:LoginProps) {
                 variant="standard"
                 onChange={((e) => handleStateChange('password', e.target.value))}
                 />
-        <div style={{ display: 'flex' }}>
-            <div style={{ flexGrow: 1 }}>
-                <Button onClick={() => handleLogin()}variant="contained" >
-                    Login
-                </Button>
-            </div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center'
-            }}>
-            <Link >
-                Esqueci a senha
-            </Link>
-            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ flexGrow: 1 }}>
+                  <Button onClick={() => handleLogin()}variant="contained" >
+                      Login
+                  </Button>
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center'
+              }}>
+                <Link >
+                    Esqueci a senha
+                </Link>
+              </div>
         </div>
     </Paper>
   </div>

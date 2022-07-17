@@ -12,7 +12,8 @@ export function ListItem (props:ListItemProps) {
   };
   return (
   <>
-  {props?.data?.length && props.data.map(value => (<div key={value.name} style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
+  {props?.data?.length > 0 && props.data.map(value => (
+    <div key={value._id} style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
       <Paper style={{ width: '80%', display: 'flex', padding: '1rem', backgroundColor: '#6daff1' }}>
         <PersonIcon style={{ color: getColor(value.status) }}/>
         <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
@@ -21,8 +22,8 @@ export function ListItem (props:ListItemProps) {
         <AddCircleOutlineIcon onClick={() => {}} style={{ color: 'green' }}/>
         <CancelIcon onClick={() => {}} style={{ color: 'red' }}/>
       </Paper>
-    </div>))}
-
+    </div>
+  ))}
   </>
 
   );
