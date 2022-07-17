@@ -115,7 +115,7 @@ export function UserList (props) {
       </div>
         </Paper>
       </div>
-      <ListItem data={data}/>
+      <ListItem fetchData={() => setSearch(!search)} data={data}/>
     </div>
   );
 }
