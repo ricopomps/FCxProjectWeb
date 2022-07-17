@@ -67,7 +67,7 @@ export function Login (props:LoginProps) {
                 display: 'flex',
                 alignItems: 'center'
               }}>
-                <Link >
+                <Link href="/recover">
                     Esqueci a senha
                 </Link>
               </div>
