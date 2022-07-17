@@ -3,7 +3,10 @@ import {
   Paper,
   Button,
   IconButton,
-  Pagination
+  Pagination,
+  Modal,
+  Box,
+  Typography
 } from '@mui/material';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
@@ -13,6 +16,7 @@ import { FormLine } from '../components/FormLine';
 
 export function UserList (props) {
   const [data, setData] = useState('');
+  const [open, setOpen] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [toggleFilter, setToggleFilter] = useState(false);
   const [filter, setFilter] = useState({
@@ -22,6 +26,12 @@ export function UserList (props) {
   const [search, setSearch] = useState(false);
   const handleStateChange = (key, value) => {
     setFilter({ ...filter, [key]: value });
+  };
+  const handleExclude = async () => {
+    return await axios.delete('http://localhost:5000/').then((resp) => {
+      setSearch(!search);
+      setOpen(false);
+    });
   };
 
   function useDebounce (value, delay) {
@@ -68,6 +78,17 @@ export function UserList (props) {
     { value: '2', label: 'Inativado' },
     { value: '3', label: 'Bloqueado' }
   ];
+  const modalStyle = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4
+  };
 
   return (
     <div>
@@ -106,9 +127,30 @@ export function UserList (props) {
               <IconButton onClick={() => setToggleFilter(!toggleFilter)} style={{ color: '#1976d2' }} size='large' edge="start" aria-label="logo">
                 {toggleFilter ? <FilterAltIcon/> : <FilterAltOffIcon/>}
               </IconButton>
-              <Button onClick={() => setSearch(!search)}variant="contained" >
+              <Button onClick={() => setSearch(!search)} variant="contained" >
                 Pesquisar
               </Button>
+              <Button color="error" onClick={() => setOpen(true) ? console.log('bods') : ''} variant="contained" >
+                Excluir todos
+              </Button>
+              <Modal
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={modalStyle}>
+                  <Typography color='black' id="modal-modal-title" variant="h6" component="h2">
+                    Deseja excluir todos os usuários?
+                  </Typography>
+                  <div style={{ display: 'flex' }}>
+                    <div style={{ flexGrow: 1 }}>
+                      <Button onClick={() => setOpen(false)}>cancelar</Button>
+                    </div>
+                    <Button onClick={() => handleExclude()}>excluir</Button>
+                  </div>
+                </Box>
+              </Modal>
             </div>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', color: 'white' }}>
         <Pagination style={{ color: 'white' }} count={Math.ceil(totalCount / 10)} color="primary" onChange={(e, value) => handleStateChange('page', value.toString())} />
