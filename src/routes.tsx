@@ -18,10 +18,7 @@ export function AppRoutes () {
                 <PrivateRoute>
                   <UserList/>
                 </PrivateRoute>}/>
-                <Route path="/form"element={
-                <PrivateRoute>
-                  <UserForm/>
-                </PrivateRoute>}/>
+                <Route path="/form"element={<UserForm/>}/>
             </Routes>
         </Router>
 
