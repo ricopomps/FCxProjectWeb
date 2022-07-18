@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
   Paper,
@@ -13,12 +14,14 @@ type UserFormProps = {
 };
 export function UserForm (props:UserFormProps) {
   const [user, setUser] = useState({ });
+  const navigate = useNavigate();
 
   const handleStateChange = (key, value) => {
     setUser({ ...user, [key]: value });
   };
   const handleSucess = () => {
-    toast.success('Login realizado com sucesso');
+    toast.success('Cadastro realizado com sucesso');
+    navigate('/list');
   };
 
   const handleFailure = (message) => {
@@ -46,12 +49,12 @@ export function UserForm (props:UserFormProps) {
           { value: user?.phone, key: 'phone', label: 'Telefone' }
         ]}/>
         <FormLine onChange={handleStateChange} data={[
-          { value: user?.birhdate, key: 'birthdate', label: 'Data de nascimento' },
+          { value: user?.birhdate, type: 'date', key: 'birthdate', label: 'Data de nascimento' },
           { value: user?.motherName, key: 'motherName', label: 'Nome da mãe' }
         ]}/>
         <FormLine onChange={handleStateChange} data={[
           { value: user?.password, key: 'password', label: 'Password' },
-          { value: user?.status, key: 'status', label: 'Status' }
+          { value: user?.status, type: 'number', key: 'status', label: 'Status' }
         ]}/>
         <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
           <Button onClick={() => handleSubmit()}variant="contained" >
