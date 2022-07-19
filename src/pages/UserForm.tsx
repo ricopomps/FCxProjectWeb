@@ -13,7 +13,7 @@ type UserFormProps = {
   user:any
 };
 export function UserForm (props:UserFormProps) {
-  const [user, setUser] = useState({ });
+  const [user, setUser] = useState({ status: '1' });
   const navigate = useNavigate();
 
   const handleStateChange = (key, value) => {
@@ -41,20 +41,19 @@ export function UserForm (props:UserFormProps) {
     <Paper style={{ width: '80%', padding: '1rem' }}>
         <FormLine onChange={handleStateChange} data={[{ value: user?.name, key: 'name', label: 'Nome' }]}/>
         <FormLine onChange={handleStateChange} data={[
-          { value: user?.email, key: 'email', label: 'E-Mail' },
+          { value: user?.email, type: 'email', key: 'email', label: 'E-Mail' },
           { value: user?.login, key: 'login', label: 'Login' }
         ]}/>
         <FormLine onChange={handleStateChange} data={[
-          { value: user?.cpf, key: 'cpf', label: 'Cpf' },
-          { value: user?.phone, key: 'phone', label: 'Telefone' }
+          { value: user?.cpf, type: 'number', key: 'cpf', label: 'Cpf' },
+          { value: user?.phone, type: 'number', key: 'phone', label: 'Telefone' }
         ]}/>
         <FormLine onChange={handleStateChange} data={[
           { value: user?.birhdate, type: 'date', key: 'birthdate', label: 'Data de nascimento' },
           { value: user?.motherName, key: 'motherName', label: 'Nome da mãe' }
         ]}/>
         <FormLine onChange={handleStateChange} data={[
-          { value: user?.password, key: 'password', label: 'Password' },
-          { value: user?.status, type: 'number', key: 'status', label: 'Status' }
+          { value: user?.password, type: 'password', key: 'password', label: 'Password' }
         ]}/>
         <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
           <Button onClick={() => handleSubmit()}variant="contained" >
