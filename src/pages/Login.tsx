@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import { toast } from 'react-toastify';
+import '../styles/login.scss';
 
 type LoginProps = {
   user:any
@@ -39,9 +40,9 @@ export function Login (props:LoginProps) {
     });
   };
   return (
-  <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem 3rem' }}>
-    <Paper style={{ display: 'grid', width: '60%', padding: '3rem', gap: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div className="loginContainer">
+    <Paper className="paper">
+        <div className="container">
             <PersonIcon />
         </div>
             <TextField
@@ -57,16 +58,14 @@ export function Login (props:LoginProps) {
                 variant="standard"
                 onChange={((e) => handleStateChange('password', e.target.value))}
                 />
-            <div style={{ display: 'flex' }}>
-              <div style={{ flexGrow: 1 }}>
+            <div className="flex">
+              <div className="flexGrow">
                   <Button onClick={() => handleLogin()}variant="contained" >
                       Login
                   </Button>
               </div>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center'
-              }}>
+              <div className="flex alignCenter"
+              >
                 <Link href="/recover">
                     Esqueci a senha
                 </Link>
