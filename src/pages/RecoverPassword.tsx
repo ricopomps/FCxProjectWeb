@@ -6,8 +6,8 @@ import {
   Typography
 } from '@mui/material';
 import { toast } from 'react-toastify';
-
 import { FormLine } from '../components/FormLine';
+import '../styles/recoverPassword.scss';
 
 type RecoverPasswordProps = {
   user:any
@@ -35,9 +35,9 @@ export function RecoverPassword (props:RecoverPasswordProps) {
   };
 
   return (
-  <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-    <Paper style={{ width: '80%', padding: '1rem' }}>
-        <Typography style={{ display: 'flex', justifyContent: 'center' }}>Recuperar senha</Typography>
+  <div className="container padding">
+    <Paper className="paper">
+        <Typography className="container">Recuperar senha</Typography>
         <FormLine onChange={handleStateChange} data={[{ value: user?.login, key: 'login', label: 'Login' }]}/>
         <FormLine onChange={handleStateChange} data={[
           { value: user?.email, key: 'email', label: 'E-Mail' },
@@ -47,7 +47,7 @@ export function RecoverPassword (props:RecoverPasswordProps) {
           { value: user?.cpf, key: 'cpf', label: 'Cpf' },
           { value: user?.password, type: 'password', key: 'password', label: 'Nova senha' }
         ]}/>
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
+        <div className="container padding">
           <Button onClick={() => handleSubmit()}variant="contained" >
             Recuperar senha
           </Button>
