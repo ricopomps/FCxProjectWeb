@@ -1,0 +1,44 @@
+@import 'constants.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+
+    .paper {
+        width: 80%;
+        padding: 1rem;
+    }
+
+    .buttonArea {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0.5em;
+        gap: 1rem;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: space-evenly;
+        color: $white;
+    }
+
+    .filter {
+        color: $blue;
+    }
+
+    // .modal {
+    //     position: absolute as absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50% -50%);
+    //     width: 400;
+    //     background-color: $white;
+    //     border: 2px solid #000;
+    //     box-shadow: 24;
+    // }
+
+}
+
+.padding {
+    padding: 6px 12px;
+}

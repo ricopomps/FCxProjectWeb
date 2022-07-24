@@ -13,6 +13,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components/ListItem';
 import { FormLine } from '../components/FormLine';
+import '../styles/userList.scss';
 
 export function UserList (props) {
   const [data, setData] = useState('');
@@ -92,8 +93,8 @@ export function UserList (props) {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-        <Paper style={{ width: '80%', padding: '1rem' }}>
+      <div className="container padding">
+        <Paper className="paper">
           <FormLine
           onChange={handleStateChange}
           data={
@@ -123,14 +124,14 @@ export function UserList (props) {
                   { value: filter?.status, key: 'status', minWidth: '8rem', select: true, defaultOption: '1', options: statusData, label: 'Status' }
                 ]}
             /></>}
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', padding: '0.5em', gap: '1rem' }}>
-              <IconButton onClick={() => setToggleFilter(!toggleFilter)} style={{ color: '#1976d2' }} size='large' edge="start" aria-label="logo">
+            <div className="buttonArea">
+              <IconButton onClick={() => setToggleFilter(!toggleFilter)} className="filter" size='large' edge="start" aria-label="logo">
                 {toggleFilter ? <FilterAltIcon/> : <FilterAltOffIcon/>}
               </IconButton>
               <Button onClick={() => setSearch(!search)} variant="contained" >
                 Pesquisar
               </Button>
-              <Button color="error" onClick={() => setOpen(true) ? console.log('bods') : ''} variant="contained" >
+              <Button color="error" onClick={() => setOpen(true)} variant="contained" >
                 Excluir todos
               </Button>
               <Modal
@@ -143,8 +144,8 @@ export function UserList (props) {
                   <Typography color='black' id="modal-modal-title" variant="h6" component="h2">
                     Deseja excluir todos os usuários?
                   </Typography>
-                  <div style={{ display: 'flex' }}>
-                    <div style={{ flexGrow: 1 }}>
+                  <div className="flex">
+                    <div className="flexGrow">
                       <Button onClick={() => setOpen(false)}>cancelar</Button>
                     </div>
                     <Button onClick={() => handleExclude()}>excluir</Button>
@@ -152,8 +153,8 @@ export function UserList (props) {
                 </Box>
               </Modal>
             </div>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly', color: 'white' }}>
-        <Pagination style={{ color: 'white' }} count={Math.ceil(totalCount / 10)} color="primary" onChange={(e, value) => handleStateChange('page', value.toString())} />
+      <div className="pagination">
+        <Pagination count={Math.ceil(totalCount / 10)} color="primary" onChange={(e, value) => handleStateChange('page', value.toString())} />
       </div>
         </Paper>
       </div>
