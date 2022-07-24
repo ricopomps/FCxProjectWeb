@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import { FormLine } from '../components/FormLine';
-import '../styles/recoverPassword.scss';
+import '../styles/form.scss';
 
 type RecoverPasswordProps = {
   user:any

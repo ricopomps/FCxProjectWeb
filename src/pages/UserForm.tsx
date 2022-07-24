@@ -6,8 +6,8 @@ import {
   Button
 } from '@mui/material';
 import { toast } from 'react-toastify';
-
 import { FormLine } from '../components/FormLine';
+import '../styles/form.scss';
 
 type UserFormProps = {
   user:any
@@ -37,8 +37,8 @@ export function UserForm (props:UserFormProps) {
   };
 
   return (
-  <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-    <Paper style={{ width: '80%', padding: '1rem' }}>
+  <div className="container padding">
+    <Paper className="paper">
         <FormLine onChange={handleStateChange} data={[{ value: user?.name, key: 'name', label: 'Nome' }]}/>
         <FormLine onChange={handleStateChange} data={[
           { value: user?.email, type: 'email', key: 'email', label: 'E-Mail' },
@@ -55,7 +55,7 @@ export function UserForm (props:UserFormProps) {
         <FormLine onChange={handleStateChange} data={[
           { value: user?.password, type: 'password', key: 'password', label: 'Password' }
         ]}/>
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
+        <div className="container padding">
           <Button onClick={() => handleSubmit()}variant="contained" >
             Cadastrar
           </Button>
