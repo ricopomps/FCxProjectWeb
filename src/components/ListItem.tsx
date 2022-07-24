@@ -2,6 +2,7 @@ import { Paper, Modal, Box, Typography, Button } from '@mui/material';
 import { useState } from 'react';
 import axios from 'axios';
 import PersonIcon from '@mui/icons-material/Person';
+import '../styles/listItem.scss';
 type ListItemProps = {
     data:any[];
     fetchData: ()=>{};
@@ -37,7 +38,7 @@ export function ListItem (props:ListItemProps) {
   };
   const Input = ({ value, keyName, type = 'text', label }:InputProps) => {
     return (
-      <div style={{ padding: '2px', color: 'black', display: 'inline-grid' }}>
+      <div className="input">
         <label>{label}</label>
         <input value={value} type={type} onChange={(e) => setSelectedUser({ ...selectedUser, [keyName]: e.target.value })} />
       </div>
@@ -46,13 +47,13 @@ export function ListItem (props:ListItemProps) {
   return (
   <>
   {props?.data?.length > 0 && props.data.map(value => (
-    <div key={value._id} style={{ display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
+    <div key={value._id} className="listItemContainer padding">
       <Paper onClick={() => {
         setOpen(true);
         setSelectedUser(value);
-      }} style={{ width: '80%', display: 'flex', padding: '1rem', backgroundColor: '#6daff1' }}>
-        <PersonIcon style={{ color: getColor(value.status), marginRight: '1rem' }}/>
-        <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+      }} className="paper">
+        <PersonIcon className={`${getColor(value.status)} icon`}/>
+        <div className="flex alignCenter flexGrow">
           {value.name}
         </div>
       </Paper>
@@ -75,7 +76,7 @@ export function ListItem (props:ListItemProps) {
           <Input value={selectedUser.motherName} keyName='motherName' label='Nome da mãe'/>
           <Input value={selectedUser.phone} keyName='phone' label='Telefone'/>
           <Input value={selectedUser.email} keyName='email' label='E-Mail' />
-          <div style={{ padding: '2px', color: 'black', display: 'inline-grid' }}>
+          <div className="input">
             <label>Status</label>
             <select value={selectedUser.status} type='number' onChange={(e) => setSelectedUser({ ...selectedUser, status: e.target.value })}
             >
@@ -90,8 +91,8 @@ export function ListItem (props:ListItemProps) {
             </option>
             </select>
           </div>
-          <div style={{ display: 'flex' }}>
-            <div style={{ flexGrow: 1 }}>
+          <div className="flex">
+            <div className="flexGrow">
               <Button onClick={() => setOpen(false)}>FECHAR</Button>
             </div>
             <Button onClick={() => handleSave()}>SALVAR</Button>

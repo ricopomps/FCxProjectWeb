@@ -1,0 +1,40 @@
+@import 'constants.scss';
+
+.listItemContainer {
+    display: flex;
+    justify-content: center;
+
+    .paper {
+        width: 80%;
+        display: flex;
+        padding: 1rem;
+        background-color: $lightBlue;
+
+        .icon {
+            margin-right: 1rem;
+        }
+    }
+
+    .green {
+        color: $green;
+    }
+
+    .yellow {
+        color: $yellow;
+    }
+
+    .red {
+        color: $red;
+    }
+
+}
+
+.input {
+    padding: 2px;
+    color: $black;
+    display: inline-grid
+}
+
+.padding {
+    padding: 6px 12px;
+}
